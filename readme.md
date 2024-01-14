@@ -72,5 +72,47 @@ sequelize seed:generate --name goals
 sequelize seed:generate --name notes
 ```
 2. Set the information for each seed file:
-
 3. Run seeders: ```sequelize db:seed:all```
+
+# ASSOCIATING THE MODELS
+1. Goals:
+```JavaScript
+...
+static associate(models) {
+    Goals.belongsTo(models.Status, {foreignKey:"status"})
+}
+...
+```
+2. Tasks:
+```JavaScript
+...
+static associate(models) {
+    Tasks.belongsTo(models.Status, {foreignKey:"status"})
+}
+...
+```
+3. Notes:
+```JavaScript
+...
+static associate(models) {
+    Notes.belongsTo(models.Priorities, {foreignKey:"importance"})
+}
+...
+```
+4. Status:
+```JavaScript
+...
+static associate(models) {
+    Status.hasMany(models.Goals, {foreignKey:"status"})
+    Status.hasMany(models.Tasks, {foreignKey:"status"})
+}
+...
+```
+3. Priorities:
+```JavaScript
+...
+static associate(models) {
+    Priorities.hasMany(models.Notes, {foreignKey:"importance"})
+}
+...
+```
