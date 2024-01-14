@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   Notes.init({
     name: DataTypes.STRING,
     header: DataTypes.STRING,
-    details: DataTypes.DATE,
+    details: DataTypes.STRING,
     importance: DataTypes.INTEGER
   }, {
     sequelize,
