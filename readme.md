@@ -42,16 +42,35 @@ database.authenticate()
 # APP MODELS
 ```BASH
 # TASKS:
-sequelize-cli model:generate --name Tasks --attributes name:string,description:string,date_of_start:date,date_of_end:date,status:integer
+sequelize model:generate --name Tasks --attributes name:string,description:string,date_of_start:date,date_of_end:date,status:integer
 # Goals:
-sequelize-cli model:generate --name Goals --attributes name:string,description:string,date_of_start:date,date_of_end:date,status:integer
+sequelize model:generate --name Goals --attributes name:string,description:string,date_of_start:date,date_of_end:date,status:integer
 # Notes:
-sequelize-cli model:generate --name Notes --attributes name:string,header:string,details:date,importance:integer
+sequelize model:generate --name Notes --attributes name:string,header:string,details:string,importance:integer
 # Status
-sequelize-cli model:generate --name Status --attributes name:string
+sequelize model:generate --name Status --attributes name:string
+# Priorities
+sequelize model:generate --name Priorities --attributes name:string
 ```
 
 # MIGRATIONS
-1. Add ```timestamps:false``` to prevent fields CreatedAt and UpdatedAt when running migrations
-2. Run migrations: ```sequelize-cli db:migrate```
+1. Add ```timestamps:false``` and delete fields "CreatedAt" and "UpdatedAt"
+2. Run migrations: ```sequelize db:migrate```
 
+# SEEDERS
+1. Create seeders for each module:
+```BASH
+# STATUS
+sequelize seed:generate --name status
+# PRIORITIES
+sequelize seed:generate --name priorities
+# TASKS
+sequelize seed:generate --name tasks
+# GOALS
+sequelize seed:generate --name goals
+# NOTES
+sequelize seed:generate --name notes
+```
+2. Set the information for each seed file:
+
+3. Run seeders: ```sequelize db:seed:all```
